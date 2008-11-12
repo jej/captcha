@@ -16,7 +16,8 @@ module CaptchaHelper
    end
    
    def captcha_block(label = 'Please type the characters in the image below')
-      content_tag('div', captcha_hidden_text + captcha_input_text(label) + captcha_image, { :class => 'captcha' })
+      content_tag('div', captcha_hidden_text + captcha_input_text(label) + captcha_image, { :class => 'captcha' }) \
+        unless session[:captcha_alreadysubmited] == true
    end
    
 end
