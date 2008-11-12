@@ -12,7 +12,7 @@ module ValidatesCaptcha
   
   module InstanceMethods
     def captcha_validated?
-      if session[:captcha_alreadysubmited] == true or CaptchaUtil::encrypt_string(params[:captcha].to_s.gsub(' ', '').downcase) == params[:captcha_validation]
+      if session[:captcha_alreadysubmited] == true or CaptchaUtil::encrypt_string(params[:captcha].to_s.gsub(' ', '').gsub('0', 'o').downcase) == params[:captcha_validation]
         session[:captcha_alreadysubmited] = true
         return true
       else
